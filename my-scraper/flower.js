@@ -26,13 +26,13 @@ const { chromium } = require('playwright'); // chromium = browser
 
     const flowers = await page.$$eval(
         '.product__name, .product-name, .product__title, .product-title, [class*="product"] h2, [class*="product"] h3, [class*="product"] a',
-        els => [...new Set(els.map(el => el.innerText.trim()).filter(t => t.length > 0))]
+        els => [...new Set(els.map(el => el.innerText.trim()).filter(t => t.length > 0))] 
     );
 
     if (flowers.length === 0) {
         // fallback: print all visible text links in the product area
         const fallback = await page.$$eval('a', els =>
-            [...new Set(els.map(el => el.innerText.trim()).filter(t => t.length > 2))]
+            [...new Set(els.map(el => el.innerText.trim()).filter(t => t.length > 2))] 
         );
         console.log('Flowers found (fallback):\n');
         fallback.forEach((name, i) => console.log(`${i + 1}. ${name}`));
